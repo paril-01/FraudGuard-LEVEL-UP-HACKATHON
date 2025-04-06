@@ -199,205 +199,217 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <div className="login-card">
-          <div className="login-header">
-            <div className="logo">
-              <LockIcon className="logo-icon" />
-              <h1>FraudGuard</h1>
+    <div className='login-page1'>
+      <div className="login-page">
+        <div className="login-container-split">
+          <div className="login-card-container">
+            <div className="login-card">
+              <div className="login-header">
+                <div className="logo">
+                  <LockIcon className="logo-icon" />
+                  <h1>FraudGuard</h1>
+                </div>
+                <p className="subtitle">Secure Access</p>
+              </div>
+
+              {isBlocked && (
+                <div className="error-message">
+                  <WarningIcon className="icon" />
+                  Too many failed attempts. Access temporarily blocked. Please try again shortly.
+                </div>
+              )}
+              {error && !isBlocked && (
+                <div className="error-message">
+                  <WarningIcon className="icon" />
+                  {error}
+                </div>
+              )}
+              {success && (
+                <div className="success-message">
+                  <CheckCircleIcon className="icon" />
+                  {success}
+                </div>
+              )}
+
+              <div className="auth-tabs">
+                <button 
+                  className={`auth-tab ${isLogin ? 'active' : ''}`} 
+                  onClick={() => !isLogin && toggleMode()}
+                  disabled={isLogin || isBlocked}
+                >
+                  Login
+                </button>
+                <button 
+                  className={`auth-tab ${!isLogin ? 'active' : ''}`} 
+                  onClick={() => isLogin && toggleMode()}
+                  disabled={!isLogin || isBlocked}
+                >
+                  Create Account
+                </button>
+              </div>
+
+              <form onSubmit={handleLoginOrRegister} className="login-form">
+                {!isLogin && (
+                  <TextField
+                    label="Full Name"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    disabled={loading || isBlocked}
+                    required
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <PersonIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                      style: { marginTop: '4px' }
+                    }}
+                    sx={{ 
+                      marginBottom: '16px',
+                      '& .MuiInputLabel-root': {
+                        transform: 'translate(14px, -9px) scale(0.75)'
+                      },
+                      '& .MuiOutlinedInput-root': {
+                        paddingTop: '8px'
+                      }
+                    }}
+                  />
+                )}
+                
+                <TextField
+                  label="Email Address"
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  disabled={loading || isBlocked}
+                  required
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <EmailIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                    style: { marginTop: '4px' }
+                  }}
+                  sx={{ 
+                    marginBottom: '16px',
+                    '& .MuiInputLabel-root': {
+                      transform: 'translate(14px, -9px) scale(0.75)'
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      paddingTop: '8px'
+                    }
+                  }}
+                />
+
+                <TextField
+                  label="Password"
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  disabled={loading || isBlocked}
+                  required
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PasswordIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                    style: { marginTop: '4px' }
+                  }}
+                  sx={{ 
+                    marginBottom: '16px',
+                    '& .MuiInputLabel-root': {
+                      transform: 'translate(14px, -9px) scale(0.75)'
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      paddingTop: '8px'
+                    }
+                  }}
+                />
+                
+                <div style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
+                  <button 
+                    type="submit"
+                    className="btn btn-primary"
+                    disabled={loading || isBlocked}
+                    style={{ width: '100%', padding: '10px 0' }}
+                  >
+                    {loading ? (
+                      <>
+                        <CircularProgress size={20} sx={{ color: 'white', mr: 1}} /> Processing...
+                      </>
+                    ) : (isLogin ? 'Login' : 'Register')}
+                  </button>
+                </div>
+
+                <div className="separator" style={{ margin: '1rem 0' }}>OR</div>
+
+                <button 
+                  type="button" 
+                  className="btn btn-metamask" 
+                  onClick={handleMetaMaskLogin}
+                  disabled={loading || isBlocked}
+                  style={{ width: '100%', marginBottom: '0.5rem', padding: '10px 0' }}
+                >
+                  <WalletIcon sx={{ mr: 1 }} />
+                  Login with MetaMask
+                </button>
+                {!metamaskAvailable && (
+                  <p className="metamask-warning" style={{ textAlign: 'center', marginTop: '0.5rem' }}>MetaMask extension not detected.</p>
+                )}
+              </form>
+
+              <div className="toggle-mode" style={{ marginTop: '1.5rem' }}>
+                {isLogin ? "Don't have an account?" : "Already have an account?"}
+                <button onClick={toggleMode} disabled={isBlocked} className="text-btn">
+                  {isLogin ? 'Register Now' : 'Login Here'}
+                </button>
+              </div>
             </div>
-            <p className="subtitle">Secure Access</p>
-          </div>
-
-          {isBlocked && (
-            <div className="error-message">
-              <WarningIcon className="icon" />
-              Too many failed attempts. Access temporarily blocked. Please try again shortly.
-            </div>
-          )}
-          {error && !isBlocked && (
-            <div className="error-message">
-              <WarningIcon className="icon" />
-              {error}
-            </div>
-          )}
-          {success && (
-            <div className="success-message">
-              <CheckCircleIcon className="icon" />
-              {success}
-            </div>
-          )}
-
-          <div className="auth-tabs">
-            <button 
-              className={`auth-tab ${isLogin ? 'active' : ''}`} 
-              onClick={() => !isLogin && toggleMode()}
-              disabled={isLogin || isBlocked}
-            >
-              Login
-            </button>
-            <button 
-              className={`auth-tab ${!isLogin ? 'active' : ''}`} 
-              onClick={() => isLogin && toggleMode()}
-              disabled={!isLogin || isBlocked}
-            >
-              Create Account
-            </button>
-          </div>
-
-          <form onSubmit={handleLoginOrRegister} className="login-form">
-            {!isLogin && (
-              <TextField
-                label="Full Name"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                disabled={loading || isBlocked}
-                required
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <PersonIcon />
-                    </InputAdornment>
-                  ),
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { marginTop: '4px' }
-                }}
-                sx={{ 
-                  marginBottom: '16px',
-                  '& .MuiInputLabel-root': {
-                    transform: 'translate(14px, -9px) scale(0.75)'
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    paddingTop: '8px'
-                  }
-                }}
-              />
-            )}
-            
-            <TextField
-              label="Email Address"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={handleInputChange}
-              disabled={loading || isBlocked}
-              required
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <EmailIcon />
-                  </InputAdornment>
-                ),
-              }}
-              InputLabelProps={{
-                shrink: true,
-                style: { marginTop: '4px' }
-              }}
-              sx={{ 
-                marginBottom: '16px',
-                '& .MuiInputLabel-root': {
-                  transform: 'translate(14px, -9px) scale(0.75)'
-                },
-                '& .MuiOutlinedInput-root': {
-                  paddingTop: '8px'
-                }
-              }}
-            />
-
-            <TextField
-              label="Password"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              name="password"
-              type={showPassword ? 'text' : 'password'}
-              value={formData.password}
-              onChange={handleInputChange}
-              disabled={loading || isBlocked}
-              required
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PasswordIcon />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-              InputLabelProps={{
-                shrink: true,
-                style: { marginTop: '4px' }
-              }}
-              sx={{ 
-                marginBottom: '16px',
-                '& .MuiInputLabel-root': {
-                  transform: 'translate(14px, -9px) scale(0.75)'
-                },
-                '& .MuiOutlinedInput-root': {
-                  paddingTop: '8px'
-                }
-              }}
-            />
-            
-            <div style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
-              <button 
-                type="submit"
-                className="btn btn-primary"
-                disabled={loading || isBlocked}
-                style={{ width: '100%', padding: '10px 0' }}
-              >
-                {loading ? (
-                  <>
-                    <CircularProgress size={20} sx={{ color: 'white', mr: 1}} /> Processing...
-                  </>
-                ) : (isLogin ? 'Login' : 'Register')}
-              </button>
-            </div>
-
-            <div className="separator" style={{ margin: '1rem 0' }}>OR</div>
-
-            <button 
-              type="button" 
-              className="btn btn-metamask" 
-              onClick={handleMetaMaskLogin}
-              disabled={loading || isBlocked}
-              style={{ width: '100%', marginBottom: '0.5rem', padding: '10px 0' }}
-            >
-              <WalletIcon sx={{ mr: 1 }} />
-              Login with MetaMask
-            </button>
-            {!metamaskAvailable && (
-              <p className="metamask-warning" style={{ textAlign: 'center', marginTop: '0.5rem' }}>MetaMask extension not detected.</p>
-            )}
-          </form>
-
-          <div className="toggle-mode" style={{ marginTop: '1.5rem' }}>
-            {isLogin ? "Don't have an account?" : "Already have an account?"}
-            <button onClick={toggleMode} disabled={isBlocked} className="text-btn">
-              {isLogin ? 'Register Now' : 'Login Here'}
-            </button>
           </div>
         </div>
+      </div>
+      
+      {/* Right side container with white background for the GIF */}
+      <div className="right-side-container">
+        <img 
+          src="/images/login-animation.gif" 
+          alt="Secure transaction monitoring" 
+        />
       </div>
     </div>
   );

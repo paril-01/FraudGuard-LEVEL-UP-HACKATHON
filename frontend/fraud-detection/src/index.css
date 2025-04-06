@@ -839,13 +839,112 @@ input:checked + .slider:before {
   color: var(--primary-color);
 }
 
+.login-page1 {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 60%, #6a8ae8 100%);
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+  width: 50%;
+}
+
+.right-side-container {
+  width: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.right-side-container img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(55, 84, 173, 0.85) 0%, rgba(74, 108, 216, 0.85) 60%, rgba(106, 138, 232, 0.85) 100%);
+  pointer-events: none;
+}
+
+/* Responsive layout - stack on mobile */
+@media (max-width: 992px) {
+  .login-page1 {
+    flex-direction: column;
+  }
+  
+  .login-page, 
+  .right-side-container {
+    width: 100%;
+    min-height: auto;
+  }
+  
+  .login-page {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .right-side-container {
+    padding: 40px 20px;
+  }
+  
+  .right-side-container img {
+    max-width: 80%;
+  }
+}
+
+.login-container-split {
+  display: flex;
+  width: 100%;
+  max-width: 550px;
+  perspective: 1000px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-card-container {
+  flex: 1;
+  width: 100%;
+}
+
+.login-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 35px;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: var(--transition);
+  animation: fadeIn 0.5s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-animation-side,
+.animation-wrapper,
+.animation-content,
+.security-features,
+.security-icon {
+  /* These styles are no longer needed as we've moved the GIF to the page background */
+  display: none;
 }
 
 .login-container {
@@ -854,25 +953,28 @@ input:checked + .slider:before {
   perspective: 1000px;
 }
 
-.login-card {
-  background-color: white;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  padding: 30px;
-  width: 100%;
-  transform-style: preserve-3d;
-  transition: var(--transition);
-  animation: fadeIn 0.5s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .login-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+}
+
+.login-animation {
+  text-align: center;
+  margin-bottom: 25px;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.login-animation img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto;
+  /* Ensure GIF loops forever */
+  animation: pulse 2s infinite alternate;
 }
 
 .logo {
@@ -1179,25 +1281,6 @@ input:focus {
 .security-alert svg {
   margin-right: 10px;
   font-size: 1.2rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 576px) {
-  .login-card {
-    padding: 20px;
-  }
-  
-  .login-header h1 {
-    font-size: 1.8rem;
-  }
-  
-  .logo-icon {
-    font-size: 2rem !important;
-  }
-  
-  .btn {
-    padding: 10px 20px;
-  }
 }
 
 /* Updated Blockchain Hub styles */
@@ -1970,4 +2053,24 @@ input:checked + .slider:before {
 @keyframes rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* Enhanced responsive design */
+@media (max-width: 992px) {
+  .login-container-split {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login-card-container {
+    max-width: 450px;
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-card {
+    padding: 20px;
+  }
 }
