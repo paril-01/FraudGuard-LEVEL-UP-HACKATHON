@@ -1,0 +1,73 @@
+{
+    "financial": {
+        "random_forest": {
+            "accuracy": 0.94,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "auc": 0.5939716312056738
+        },
+        "gradient_boosting": {
+            "accuracy": 0.94,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "auc": 0.5585106382978724
+        },
+        "enhanced_ensemble": {
+            "accuracy": 0.94,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "auc": 0.5886524822695035,
+            "threshold": 0.2599999999999999
+        }
+    },
+    "ethereum": {
+        "random_forest": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "auc": 1.0
+        },
+        "gradient_boosting": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "auc": 1.0
+        },
+        "enhanced_ensemble": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "auc": 1.0,
+            "threshold": 0.1
+        }
+    },
+    "combined": {
+        "random_forest": {
+            "accuracy": 0.97,
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "auc": 0.7969858156028369
+        },
+        "gradient_boosting": {
+            "accuracy": 0.97,
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "auc": 0.7792553191489362
+        },
+        "enhanced_ensemble": {
+            "accuracy": 0.97,
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "auc": 0.7943262411347518
+        }
+    }
+}

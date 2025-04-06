@@ -1,0 +1,15 @@
+# Fraud Detection Models Summary
+
+This directory contains results from training various fraud detection models.
+
+## Models Trained
+
+1. Online Payment Fraud Detection
+2. Credit Card Fraud Detection
+3. E-commerce Transactions Fraud Detection
+4. Fraud E-commerce Detection
+5. Bitcoin Transaction Fraud Detection
+
+## Plots
+
+The 'plots' directory contains confusion matrices and feature importance visualizations.

@@ -1,0 +1,1 @@
+{"feature_columns": ["Unnamed: 0", "BlockHeight", "Value", "isError", "Value_log", "Value_is_outlier"], "target_column": "is_fraud"}

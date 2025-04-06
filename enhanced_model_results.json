@@ -1,0 +1,42 @@
+{
+  "models": {
+    "original_random_forest": {
+      "accuracy": 0.9625,
+      "precision": 0.8847,
+      "recall": 0.7234,
+      "f1": 0.7962,
+      "auc": 0.9418
+    },
+    "original_xgboost": {
+      "accuracy": 0.9712,
+      "precision": 0.9103,
+      "recall": 0.7486,
+      "f1": 0.8219,
+      "auc": 0.9536
+    },
+    "enhanced_ensemble": {
+      "accuracy": 0.9537,
+      "precision": 0.7821,
+      "recall": 0.9512,
+      "f1": 0.8584,
+      "auc": 0.9631
+    }
+  },
+  "improvements": {
+    "recall_improvement": 0.2026,
+    "f1_improvement": 0.03650000000000009,
+    "precision_change": -0.12819999999999998
+  },
+  "top_features": {
+    "transaction_amount": 0.187,
+    "transaction_velocity": 0.142,
+    "time_of_day": 0.118,
+    "account_age": 0.097,
+    "ip_risk_score": 0.085,
+    "device_reputation": 0.076,
+    "foreign_transaction": 0.068,
+    "weekend_transaction": 0.062,
+    "high_risk_merchant": 0.058,
+    "user_transaction_history": 0.049
+  }
+}

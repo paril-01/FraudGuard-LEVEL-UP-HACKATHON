@@ -1,0 +1,1 @@
+{"timestamp_fields": ["TimeStamp"], "amount_fields": ["Value"], "address_fields": [], "target_field": "is_fraud", "feature_fields": ["Unnamed: 0", "BlockHeight", "Value", "isError", "Value_log", "Value_is_outlier"]}

@@ -1,0 +1,24 @@
+{
+    "random_forest": {
+        "accuracy": 0.94,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.5939716312056738
+    },
+    "gradient_boosting": {
+        "accuracy": 0.94,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.5585106382978724
+    },
+    "enhanced_ensemble": {
+        "accuracy": 0.94,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.5886524822695035,
+        "threshold": 0.2599999999999999
+    }
+}

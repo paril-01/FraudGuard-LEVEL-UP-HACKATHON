@@ -1,0 +1,93 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+firebase-credentials.json
+*.log
+.DS_Store
+
+# Data files
+data/*.csv
+data/*.zip
+data/raw/
+*.csv
+*.h5
+
+# Environments
+.env
+.venv
+env.bak/
+venv.bak/
+
+# Logs and outputs
+logs/
+output/
+runs/
+
+# Model files
+*.pkl
+*.h5
+*.model
+*.pt
+*.pth
+*.onnx
+models/saved_models/
+
+# OS specific
+Thumbs.db 
